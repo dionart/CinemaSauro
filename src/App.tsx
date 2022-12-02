@@ -1,34 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import "./App.css";
+import api from "./api";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import PurchaseModal from "./components/PurchaseModal";
+import logo from "./assets/logo.png";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [movies, setMovies] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const fetchMovies = async () => {
+    const response = await api.get(
+      "/movie/now_playing?api_key=5b0fd1f184111afa2f58a58c7f9c695a"
+    );
+    setMovies(response.data.results);
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="header">
+        {/* <span className="title">Cinema Sauro</span> */}
+        <img className="logo" src={logo} />
+        <span className="description">
+          O melhor cinema da cidade de Souza, sempre com os melhores e mais
+          recentes filmes em cartaz para você e sua família.
+        </span>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      <span className="now-playing">Filmes em cartaz</span>
+
+      <div className="movies">
+        <Swiper
+          style={{ zIndex: 0 }}
+          spaceBetween={20}
+          slidesPerView={4.5}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+          pagination={{ clickable: true }}
+        >
+          {movies.map((movie) => {
+            return (
+              <SwiperSlide onClick={() => setIsOpen(true)}>
+                <div
+                  className="movie-image"
+                  style={{
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.poster_path})`,
+                  }}
+                >
+                  {movie.adult && (
+                    <div className="age">
+                      <span>18</span>
+                    </div>
+                  )}
+
+                  <div className="movie-info">
+                    <span className="movie-title">{movie.original_title}</span>
+                    <span>Nota: {movie.vote_average}</span>
+                  </div>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <PurchaseModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
