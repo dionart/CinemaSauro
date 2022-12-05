@@ -19,3 +19,154 @@
   color: orange;
   margin-top: 20px;
 }
+
+.screen {
+  width: 100%;
+  height: 30px;
+  background-color: #1b1b1b;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.seats {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+  justify-content: center;
+  transform: scaleY(-1);
+  margin-top: 30px;
+}
+
+.seat {
+  width: 20px;
+  height: 20px;
+  background-color: orange;
+  margin: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.seat-selected {
+  width: 20px;
+  height: 20px;
+  background-color: grey;
+  margin: 4px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.seat:hover {
+  background-color: #ff8c00;
+}
+
+.centered {
+  width: 75%;
+}
+
+.seats-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.light-text {
+  color: #b3b3b3;
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.tickets-info {
+  display: flex;
+  flex-direction: column;
+  width: 33.3%;
+  margin-top: 16px;
+}
+
+.input-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.input-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: #b3b3b3;
+}
+
+.number-input {
+  width: 70px;
+  height: 30px;
+  border: 2px solid grey;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 600;
+  color: orange;
+  text-align: center;
+}
+
+.lunch-info {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin-top: 16px;
+  margin-left: 30px;
+  width: 33.3%;
+  height: 100%;
+}
+
+input:focus,
+input:focus {
+  outline: none;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.checkout-items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: 16px;
+  border-bottom: 1px solid orange;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  color: orange;
+  margin-top: 10px;
+  text-align: right;
+}
+
+.total-price {
+  font-size: 24px;
+  font-weight: 600;
+  color: orange;
+  margin-top: 10px;
+  text-align: right;
+}

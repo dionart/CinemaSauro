@@ -2,6 +2,7 @@
   /* max-width: 1280px; */
   margin: 0 auto;
   width: 100vw;
+  height: 100%;
 }
 
 .header {
@@ -10,6 +11,7 @@
   align-items: center;
   padding: 2rem;
   text-align: center;
+  position: relative;
   /* height: 20vh; */
 }
 
@@ -18,6 +20,14 @@
   width: 150px;
   height: 150px;
   object-fit: contain;
+}
+
+.sessions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 80vh; */
 }
 
 .now-playing {
@@ -46,7 +56,6 @@
 }
 
 .movie-image {
-  cursor: pointer;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -87,4 +96,71 @@
   display: flex;
   flex-direction: column;
   padding: 16px;
+}
+
+.session-date {
+  font-size: 24px;
+  font-weight: 600;
+  color: grey;
+  padding: 4px;
+  padding: 16px 16px 24px 16px;
+}
+
+.session {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.session-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid orange;
+  border-radius: 4px;
+  width: 20%;
+}
+
+.session-time {
+  font-size: 18px;
+  font-weight: 600;
+  color: orange;
+  padding: 4px;
+}
+
+.session-container:hover {
+  background-color: orange;
+  cursor: pointer;
+}
+
+.session-container:hover .session-time {
+  color: white;
+}
+
+.session-times {
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+.login-text {
+  color: orange;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  width: 10%;
+  top: 20px;
+  right: 40px;
 }
