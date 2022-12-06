@@ -20,7 +20,7 @@ export const inputMaps = [
     price: 15,
   },
   {
-    type: "flamengo",
+    type: "flamenguista",
     label: "Flamenguista",
     price: 0,
   },

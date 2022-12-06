@@ -5,6 +5,7 @@ import "./styles.css";
 interface SignUpModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess: () => void;
 }
 
 const customStyles = {
@@ -26,12 +27,35 @@ const customStyles = {
 };
 
 import logo from "../../assets/logo.png";
+import api, { teste } from "../../api";
+import SuccessModal from "../SuccessModal";
 
-const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
+const SignUpModal: React.FC<SignUpModalProps> = ({
+  isOpen,
+  onClose,
+  onSuccess,
+}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [CPF, setCPF] = useState("");
+  const [feedback, setFeedback] = useState(false);
+
+  const handleSignUp = async () => {
+    try {
+      const response = await teste.post("/clients", {
+        name: name,
+        cpf: CPF,
+        email: email,
+        password: password,
+      });
+
+      response.data && setFeedback(true);
+      response.data && onSuccess();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   function cpfMask(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -51,7 +75,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
       contentLabel="Example Modal"
       overlayClassName="overlay"
     >
-      <div className="modal-content">
+      <div className="modal-content-sign">
         <img className="logo" src={logo} />
         <span>Cadastre-se</span>
         <input
@@ -84,11 +108,20 @@ const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onClose }) => {
           className="login-input"
         />
 
-        <button className="button">Cadastrar</button>
+        <button onClick={() => handleSignUp()} className="signup-button">
+          Cadastrar
+        </button>
         <span onClick={onClose} className="cancel-button">
           Cancelar
         </span>
       </div>
+      <SuccessModal
+        isOpen={feedback}
+        onClose={() => {
+          setFeedback(false);
+          onClose();
+        }}
+      />
     </Modal>
   );
 };

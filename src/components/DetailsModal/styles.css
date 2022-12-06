@@ -1,0 +1,44 @@
+.modal-label {
+  font-size: 32px;
+  font-weight: 600;
+  color: orange;
+  margin-bottom: 10px;
+}
+
+.movie-poster {
+  width: auto;
+  height: 400px;
+  object-fit: contain;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+  /* align-items: center; */
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.cast-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,20 @@
+.button {
+  background-color: white;
+  border: none;
+  color: #10cf6c;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.text {
+  color: white;
+  font-size: 34px;
+  font-weight: 600;
+  cursor: pointer;
+}

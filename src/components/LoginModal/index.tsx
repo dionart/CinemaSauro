@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Modal from "react-modal";
 import "./styles.css";
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess: (user: any) => void;
 }
 
 const customStyles = {
@@ -26,8 +27,31 @@ const customStyles = {
 };
 
 import logo from "../../assets/logo.png";
+import { teste } from "../../api";
 
-const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
+const LoginModal: React.FC<LoginModalProps> = ({
+  isOpen,
+  onClose,
+  onSuccess,
+}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [feedback, setFeedback] = useState(false);
+
+  const handleLogin = async () => {
+    try {
+      const response = await teste.post("/clients/login", {
+        email: email,
+        password: password,
+      });
+
+      response.data && setFeedback(true);
+      response.data && onSuccess(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Modal
       isOpen={isOpen}
@@ -36,12 +60,26 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
       contentLabel="Example Modal"
       overlayClassName="overlay"
     >
-      <div className="modal-content">
+      <div className="modal-content-login">
         <img className="logo" src={logo} />
         <span>Login</span>
-        <input placeholder="Email" type="email" className="login-input" />
-        <input placeholder="Password" type="password" className="login-input" />
-        <button className="button">Entrar</button>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          type="email"
+          className="login-input"
+        />
+        <input
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          type="password"
+          className="login-input"
+        />
+        <button onClick={() => handleLogin()} className="login-button">
+          Entrar
+        </button>
         <span onClick={onClose} className="cancel-button">
           Cancelar
         </span>
