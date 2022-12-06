@@ -139,10 +139,12 @@ function App() {
 
                   <div key={index} className="session-date">
                     <span className="date">
-                      {new Date(session.date_start).toLocaleDateString(
-                        "pt-BR",
-                        { day: "numeric", month: "numeric" }
-                      )}
+                      Sala {session.room.number} -
+                      {" " +
+                        new Date(session.date_start).toLocaleDateString(
+                          "pt-BR",
+                          { day: "numeric", month: "numeric" }
+                        )}
                       ,
                       {" " +
                         new Date(session.date_start).toLocaleDateString(
