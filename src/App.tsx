@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import api, { teste } from "./api";
+import { api } from "./api";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import PurchaseModal from "./components/PurchaseModal";
@@ -60,7 +60,7 @@ function App() {
   const [isInvoiceOpen, setIsInvoiceOpen] = useState(false);
 
   const fetchSessions = async () => {
-    const response = await teste.get("/sessions");
+    const response = await api.get("/sessions");
     setSessions(response.data);
   };
 

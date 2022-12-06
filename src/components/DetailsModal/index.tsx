@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Movie } from "../types/types";
 import "./styles.css";
 import Modal from "react-modal";
-import { teste } from "../../api";
+import { api } from "../../api";
 
 // import { Container } from './styles';
 
@@ -38,7 +38,7 @@ const DetailsModal: React.FC<DetailsModalProps> = ({
   const [cast, setCast] = useState<any>([]);
 
   const fetchCast = async () => {
-    const response = await teste.get(`/movies/${movie.id}/cast`);
+    const response = await api.get(`/movies/${movie.id}/cast`);
 
     setCast(response.data[0].actors);
   };

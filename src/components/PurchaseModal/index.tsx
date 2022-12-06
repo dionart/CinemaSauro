@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { teste } from "../../api";
+import { api } from "../../api";
 import { Session, Snack } from "../types/types";
 import { inputMaps } from "./constants";
 import "./styles.css";
@@ -91,13 +91,13 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({
   }, [session, isOpen]);
 
   const fetchSeats = async () => {
-    const response = await teste.get(`/tickets/seats/${session.id}`);
+    const response = await api.get(`/tickets/seats/${session.id}`);
 
     setSeats(response.data);
   };
 
   const fetchSnacks = async () => {
-    const response = await teste.get("/snacks");
+    const response = await api.get("/snacks");
 
     setSnacks(response.data);
   };
@@ -197,7 +197,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({
   };
 
   const fetchTypeSessions = async () => {
-    const response = await teste.get("/type-sessions/");
+    const response = await api.get("/type-sessions/");
 
     const weekDay = new Date(session.date_start).toLocaleDateString("pt-BR", {
       weekday: "long",
@@ -242,7 +242,7 @@ const PurchaseModal: React.FC<PurchaseModalProps> = ({
     };
 
     try {
-      const response = await teste.post("/purchases", response_body);
+      const response = await api.post("/purchases", response_body);
 
       handleClose();
       onSuccess(response.data);

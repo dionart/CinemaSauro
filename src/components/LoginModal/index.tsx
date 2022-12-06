@@ -27,7 +27,7 @@ const customStyles = {
 };
 
 import logo from "../../assets/logo.png";
-import { teste } from "../../api";
+import { api } from "../../api";
 
 const LoginModal: React.FC<LoginModalProps> = ({
   isOpen,
@@ -36,16 +36,14 @@ const LoginModal: React.FC<LoginModalProps> = ({
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [feedback, setFeedback] = useState(false);
 
   const handleLogin = async () => {
     try {
-      const response = await teste.post("/clients/login", {
+      const response = await api.post("/clients/login", {
         email: email,
         password: password,
       });
 
-      response.data && setFeedback(true);
       response.data && onSuccess(response.data);
     } catch (error) {
       console.log(error);

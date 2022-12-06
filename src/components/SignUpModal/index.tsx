@@ -27,7 +27,7 @@ const customStyles = {
 };
 
 import logo from "../../assets/logo.png";
-import api, { teste } from "../../api";
+import { api } from "../../api";
 import SuccessModal from "../SuccessModal";
 
 const SignUpModal: React.FC<SignUpModalProps> = ({
@@ -43,7 +43,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({
 
   const handleSignUp = async () => {
     try {
-      const response = await teste.post("/clients", {
+      const response = await api.post("/clients", {
         name: name,
         cpf: CPF,
         email: email,
