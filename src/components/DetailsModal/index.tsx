@@ -4,8 +4,6 @@ import "./styles.css";
 import Modal from "react-modal";
 import { api } from "../../api";
 
-// import { Container } from './styles';
-
 interface DetailsModalProps {
   movie: Movie;
   isOpen: boolean;
@@ -70,7 +68,7 @@ const DetailsModal: React.FC<DetailsModalProps> = ({
           <span>Nacional: {movie.isNational ? "Sim" : "Não"}</span>
           <span>Premier: {movie.isPremiere ? "Sim" : "Não"}</span>
           <span>Distribuição: {movie.production_company}</span>
-          <span>Elenco:</span>
+          {cast.length > 0 && <span>Elenco:</span>}
           <div className="cast-container">
             {cast.map((actor: any, index: number) => (
               <span key={index}>{actor.name}, </span>
@@ -81,13 +79,6 @@ const DetailsModal: React.FC<DetailsModalProps> = ({
       <span onClick={onClose} className="cancel-button">
         Fechar
       </span>
-      {/* <SuccessModal
-    isOpen={feedback}
-    onClose={() => {
-      setFeedback(false);
-      onClose();
-    }}
-  /> */}
     </Modal>
   );
 };
